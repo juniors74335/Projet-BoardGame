@@ -20,3 +20,6 @@ typedef struct Joueur
 
 
 int Initialize ();
+void InitializeBoard(Board b);
+void AddCharAtPosition(Board b, int x, int y, char toBeAdded);
+void Move(Board b, int x, int y);
