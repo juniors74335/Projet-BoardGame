@@ -1,7 +1,7 @@
 
 
 
-
+#define TAILLE_MAX_JOUEUR 32
 
 
 

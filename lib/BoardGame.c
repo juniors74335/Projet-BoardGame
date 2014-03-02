@@ -31,12 +31,13 @@ int main() 	{
 	retourne -2 si erreurs inconnue...
 */
 int Initialize (){
-	char unString[256];
+	char unString[TAILLE_MAX_JOUEUR];
 	if(joueur1 == NULL)
 	{
 		joueur1 = (Joueur*) malloc(sizeof(Joueur));
 		printf("Veuillez entrez le nom du joueur 1 :\n");
 		scanf("%s",unString);
+		joueur1->Nom = unString;
 		joueur1->nbrVictoire = 0;
 	}
 	if(joueur2 == NULL)
@@ -44,11 +45,7 @@ int Initialize (){
 		joueur2 = (Joueur*) malloc(sizeof(Joueur));
 		printf("Veuillez entrez le nom du joueur 2 :\n");
 		scanf("%s",unString);
-		
 		joueur2->Nom = unString;
-		//debug
-		printf("%s\n",joueur2->Nom);
-		// FIN DEBUG
 		joueur2->nbrVictoire = 0;
 	}
 	if(joueur2 != NULL && joueur1 != NULL)
