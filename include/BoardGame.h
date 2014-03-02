@@ -13,7 +13,15 @@ typedef struct Joueur
 }Joueur;
 
 
-
+typedef struct board
+{
+	char tabBoard[8][8];
+	char* player1Name;
+	char* player2Name;
+	int TourDeJeu;
+	int player1Score;
+	int player2Score;
+}Board;
 
 
 
