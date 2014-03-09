@@ -100,11 +100,15 @@ void afficherBoard(Board b)
    	printf("  1 2 3 4 5 6 7 8\n");
 
    	// A mettre dans un while qui change le a en b puis en c... a chaque fois 
-   	// Pour oas te faire chier
-   	printf("a");
+   	// Pour pas te faire chier
+	
    	for(l = 0;l<=8;l++) 
    	{
-   		printf(" %c", b.tabBoard[l][c]);
+   		//printf(" %c", b.tabBoard[l][c]);
+		for (lettre = "a"; lettre <="h";lettre++)
+		{
+   		printf("%c",lettre \n);
+		}
    	}
    	return;
 }
