@@ -60,31 +60,17 @@ int Initialize (){
 
 void InitializeBoard(Board b)
 {
-	int i,j;
-	for (i=0; i<8; i++)
+	char case;
+	int l, c;
+	for (l=0; l<8; l++)
     	{
-        	for (j=0; i<8; j++)
+        	for (c=0; c<8; c++)
         	{
-            		(*Board).tabBoard[i][j] =0;
+            		(*Board).tabBoard[l][c] = case;
         	}
     	}
-	int l, c;
  
-    for (l=0; l<8; l++)
-    {
-        for (c=0; c<8; c++)
-        {
-            (*Board).tabBoard[l][c] = VIDE;
-        }
-    }
  
-    // On place les 4 premiers pions pour le début de la partie
- 
-    (*Board).tabBoard[T/2-1][T/2] = BLANC;
-    (*Board).tabBoard[T/2][T/2-1] = BLANC;
- 
-    (*Board).tabBoard[T/2][T/2] = NOIR;
-    (*Board).tabBoard[T/2-1][T/2-1] = NOIR;
 }
 
 void AddCharAtPosition(Board b, int x, int y, char toBedAdded)
