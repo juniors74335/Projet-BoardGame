@@ -69,7 +69,7 @@ Board InitializeBoard(Board b)
     	{
         	for (c=0; c<8; c++)
         	{
-            		b.tabBoard[l][c] = 'o';
+            		b.tabBoard[l][c] = 219;
         	}
     	}
  	return b;
