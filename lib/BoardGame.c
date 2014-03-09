@@ -60,13 +60,14 @@ int Initialize (){
 
 void InitializeBoard(Board b)
 {
-	char case;
+	char uneCase;
 	int l, c;
+
 	for (l=0; l<8; l++)
     	{
         	for (c=0; c<8; c++)
         	{
-            		(*Board).tabBoard[l][c] = case;
+            		b.tabBoard[l][c] = uneCase;
         	}
     	}
  
