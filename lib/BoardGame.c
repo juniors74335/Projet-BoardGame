@@ -89,6 +89,12 @@ void Move(Board b, int x, int y)
 // Fonction pour afficher tout le board a l'ecran.
 void afficherBoard(Board b) 
 {
-
-
+	int l,c;
+    	c=1;
+     	char lettre;
+   	for (lettre='a'; lettre<='h'; lettre++) // Affichage des lettres
+        {
+        	printf ("%c", lettre);
+        }
+	
 }
