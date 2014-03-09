@@ -60,19 +60,19 @@ int Initialize (){
 	return -2;
 }
 
-void InitializeBoard(Board b)
+Board InitializeBoard(Board b)
 {
-	char uneCase = 'o';
+
 	int l, c;
 
 	for (l=0; l<8; l++)
     	{
         	for (c=0; c<8; c++)
         	{
-            		b.tabBoard[l][c] = uneCase;
+            		b.tabBoard[l][c] = 'o';
         	}
     	}
- 
+ 	return b;
  
 }
 
@@ -93,18 +93,26 @@ void afficherBoard(Board b)
 {
 	int l,c;
     	
- 	char lettre;
+ 	int lettre;
 
  	c=0;
  	l = 0;
    	printf("  1 2 3 4 5 6 7 8\n");
 
    	// A mettre dans un while qui change le a en b puis en c... a chaque fois 
-   	// Pour oas te faire chier
-   	printf("a");
-   	for(l = 0;l<=8;l++) 
-   	{
-   		printf(" %c", b.tabBoard[l][c]);
-   	}
+   	// Pour pas te faire chier
+	
+   	
+   		//printf(" %c", b.tabBoard[l][c]);
+		for (lettre = 97; lettre <=104;lettre++)
+		{
+			printf("%c", lettre);
+			for(l = 0;l<=7;l++) 
+   			{
+   				printf(" %c",b.tabBoard[l][c]);
+   			}
+   			printf("\n");
+		}
+   	
    	return;
 }

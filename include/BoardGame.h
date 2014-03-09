@@ -29,7 +29,7 @@ typedef struct board
 
 
 int Initialize ();
-void InitializeBoard(Board b);					
+Board InitializeBoard(Board b);					
 void AddCharAtPosition(Board b, int x, int y, char toBeAdded);
 void Move(Board b, int x, int y);
 void afficherBoard(Board b);

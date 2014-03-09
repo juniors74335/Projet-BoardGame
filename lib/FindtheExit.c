@@ -1,12 +1,11 @@
 #include "BoardGame.h"
 
-Board labi;
 void partieFindTheExit()
 {
 	int l,c;
 	Board labi;
 	Initialize();
-	InitializeBoard(labi);
+	labi = InitializeBoard(labi);
 	for (l=0; l<8; l++)
     {
        	for (c=0; c<8; c++)

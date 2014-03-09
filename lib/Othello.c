@@ -4,7 +4,7 @@
 
 void partie(Joueur joueur1,Joueur joueur2) {
 	Board leBoard;
-	InitializeBoard(leBoard);
+	leBoard  = InitializeBoard(leBoard);
 	int finDePartie = 0;
 	int tourDeJeu = 0;					// tour de jeu a 0 = joueur1;
 	char positionNouveauPion[3];
@@ -17,7 +17,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 		afficherBoard(leBoard);
 		if(tourDeJeu == 0)
 		{
-			printf("C'est a %s de jouer:\n",leBoard.player1Name);
+			printf("\nC'est a %s de jouer:\n",leBoard.player1Name);
 			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)\n");
 			scanf("%s",positionNouveauPion);
 			positionNouveauPion[2] = 0;
