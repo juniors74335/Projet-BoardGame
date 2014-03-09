@@ -17,13 +17,13 @@ void partie(Joueur joueur1,Joueur joueur2) {
 		afficherBoard(leBoard);
 		if(tourDeJeu == 0)
 		{
-			printf("C'est à %s de jouer:\n",leBoard.player1Name);
+			printf("C'est a %s de jouer:\n",leBoard.player1Name);
 			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)");
 			scanf(positionNouveauPion);
 			positionNouveauPion[2] = 0;
 			tourDeJeu = -1;
 		}
-
+		finDePartie = -1;
 	}
 
 

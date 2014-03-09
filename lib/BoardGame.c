@@ -92,11 +92,19 @@ void Move(Board b, int x, int y)
 void afficherBoard(Board b) 
 {
 	int l,c;
-    	c=1;
-     	char lettre;
-   	for (lettre='a'; lettre<='h'; lettre++) // Affichage des lettres
-        {
-        	printf ("%c", lettre);
-        }
-	
+    	
+ 	char lettre;
+
+ 	c=0;
+ 	l = 0;
+   	printf("  1 2 3 4 5 6 7 8\n");
+
+   	// A mettre dans un while qui change le a en b puis en c... a chaque fois 
+   	// Pour oas te faire chier
+   	printf("a");
+   	for(l = 0;l<=8;l++) 
+   	{
+   		printf(" %c", b.tabBoard[l][c]);
+   	}
+   	return;
 }
