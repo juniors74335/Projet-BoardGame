@@ -3,7 +3,7 @@
 
 
 void partie(Joueur joueur1,Joueur joueur2) {
-	Board leBoard;	
+	Board leBoard;
 	int finDePartie = 0;
 	int tourDeJeu = 0;					// tour de jeu a 0 = joueur1;
 	char positionNouveauPion[3];
@@ -19,6 +19,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 		if(tourDeJeu == 0)
 		{
 			printf("\nC'est a %s de jouer:\n",leBoard.player1Name);
+
 			tourDeJeu = -1;
 		}else {
 			tourDeJeu = 0;printf("\nC'est a %s de jouer:\n",leBoard.player2Name);
@@ -34,6 +35,15 @@ void partie(Joueur joueur1,Joueur joueur2) {
 
 
 
+	
 
+}
 
+void InitializeBoardOthello(Board b)
+{
+	b.tabBoard[8/2-1][8/2] = "O";
+    	b.tabBoard[8/2][8/2-1] = "O";
+ 
+    	b.tabBoard[8/2][8/2] = "X";
+    	b.tabBoard[8/2-1][8/2-1] = "X";
 }
