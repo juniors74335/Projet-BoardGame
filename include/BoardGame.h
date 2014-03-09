@@ -1,4 +1,5 @@
-
+#ifndef BOARDGAME_H
+#define BOARDGAME_H
 
 
 #define TAILLE_MAX_JOUEUR 32
@@ -32,3 +33,7 @@ void InitializeBoard(Board b);
 void AddCharAtPosition(Board b, int x, int y, char toBeAdded);
 void Move(Board b, int x, int y);
 void afficherBoard(Board b);
+
+
+
+#endif

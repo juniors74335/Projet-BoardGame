@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "Othello.h"
 
 
 Joueur* joueur1 = NULL;
@@ -11,6 +12,7 @@ Joueur* joueur2 = NULL;
 
 int main() 	{
 	Initialize();
+	partie(*joueur1,*joueur2);
 	return 0;
 
 }
