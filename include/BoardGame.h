@@ -19,8 +19,8 @@ typedef struct board
 	char* player1Name;
 	char* player2Name;
 	int TourDeJeu;
-	int player1Score;
-	int player2Score;
+	int player1Score;			// Un peu une redite ca nan?
+	int player2Score;			// Un peu une redite ca nan?
 }Board;
 
 
@@ -28,6 +28,7 @@ typedef struct board
 
 
 int Initialize ();
-void InitializeBoard(Board b);
+void InitializeBoard(Board b);					
 void AddCharAtPosition(Board b, int x, int y, char toBeAdded);
 void Move(Board b, int x, int y);
+void afficherBoard(Board b);

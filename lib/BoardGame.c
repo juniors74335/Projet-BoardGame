@@ -96,3 +96,12 @@ void Move(Board b, int x, int y)
 {
 
 }
+
+
+
+// Fonction pour afficher tout le board a l'ecran.
+void afficherBoard(Board b) 
+{
+
+
+}
