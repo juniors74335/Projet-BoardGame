@@ -1,6 +1,7 @@
 #include "BoardGame.h"
 
 Board labi;
+int c,l;
 void main()
 {
 	Initialize();
