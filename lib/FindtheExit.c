@@ -1,8 +1,10 @@
 #include "BoardGame.h"
 
 Board labi;
-void main()
+void partieFindTheExit()
 {
+	int l,c;
+	Board labi;
 	Initialize();
 	InitializeBoard(labi);
 	for (l=0; l<8; l++)
@@ -18,10 +20,10 @@ void main()
            					case 2:
            					case 3:
            					case 4:
-           						labi[c][l] = 1;
+           						labi.tabBoard[c][l] = '1';
            						break;
            					default:
-           						labi[c][l] = 0;
+           						labi.tabBoard[c][l] ='0';
            						break;
            				}
            				break;
@@ -32,10 +34,10 @@ void main()
            					case 1:
            					case 2:
            					case 4:
-           						labi[c][l] = 1;
+           						labi.tabBoard[c][l] = '1';
            						break;
            					default:
-           						labi[c][l] = 0;
+           						labi.tabBoard[c][l] = '0';
            						break;
            				}
            				break;
@@ -46,10 +48,10 @@ void main()
            					case 6:
            					case 7:
            					case 4:
-           						labi[c][l] = 1;
+           						labi.tabBoard[c][l] = '1';
            						break;
            					default:
-           						labi[c][l] = 0;
+           						labi.tabBoard[c][l] = '0';
            						break;
            				}
            				break;
@@ -60,10 +62,10 @@ void main()
            					case 2:
            					case 3:
            					case 7:
-           						labi[c][l] = 1;
+           						labi.tabBoard[c][l] = '1';
            						break;
            					default:
-           						labi[c][l] = 0;
+           						labi.tabBoard[c][l] = '0';
            						break;
            				}
            				break;
@@ -75,10 +77,10 @@ void main()
            					case 3:
            					case 4:
            					case 7:
-           						labi[c][l] = 1;
+           						labi.tabBoard[c][l] = '1';
            						break;
            					default:
-           						labi[c][l] = 0;
+           						labi.tabBoard[c][l] = '0';
            						break;
            				}
            				break;
@@ -90,10 +92,10 @@ void main()
            					case 5:
            					case 6:
            					case 7:
-           						labi[c][l] = 1;
+           						labi.tabBoard[c][l] = '1';
            						break;
            					default:
-           						labi[c][l] = 0;
+           						labi.tabBoard[c][l] = '0';
            						break;
            				}
            				break;
@@ -101,10 +103,10 @@ void main()
            				switch (l)
            				{
            					case 3:
-           						labi[c][l] = 1;
+           						labi.tabBoard[c][l] = '1';
            						break;
            					default:
-           						labi[c][l] = 0;
+           						labi.tabBoard[c][l] = '0';
            						break;
            				}
            				break;
@@ -117,10 +119,10 @@ void main()
            					case 2:
            					case 3:
            					case 4:
-           						labi[c][l] = 1;
+           						labi.tabBoard[c][l] = '1';
            						break;
            					default:
-           						labi[c][l] = 0;
+           						labi.tabBoard[c][l] = '0';
            						break;
            				}
            				break;

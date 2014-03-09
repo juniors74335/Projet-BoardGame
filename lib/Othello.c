@@ -18,9 +18,10 @@ void partie(Joueur joueur1,Joueur joueur2) {
 		if(tourDeJeu == 0)
 		{
 			printf("C'est a %s de jouer:\n",leBoard.player1Name);
-			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)");
-			scanf(positionNouveauPion);
+			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)\n");
+			scanf("%s",positionNouveauPion);
 			positionNouveauPion[2] = 0;
+			leBoard.tabBoard[positionNouveauPion[0]-97][positionNouveauPion[1]] = 'o';
 			tourDeJeu = -1;
 		}
 		finDePartie = -1;

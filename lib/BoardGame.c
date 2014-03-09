@@ -62,7 +62,7 @@ int Initialize (){
 
 void InitializeBoard(Board b)
 {
-	char uneCase;
+	char uneCase = 'o';
 	int l, c;
 
 	for (l=0; l<8; l++)
