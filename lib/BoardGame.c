@@ -1,4 +1,4 @@
-#include "BoardGame.h"
+﻿#include "BoardGame.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -58,3 +58,41 @@ int Initialize (){
 	return -2;
 }
 
+void InitializeBoard(Board b)
+{
+	int i,j;
+	for (i=0; i<8; i++)
+    	{
+        	for (j=0; i<8; j++)
+        	{
+            		(*Board).tabBoard[i][j] =0;
+        	}
+    	}
+	int l, c;
+ 
+    for (l=0; l<8; l++)
+    {
+        for (c=0; c<8; c++)
+        {
+            (*Board).tabBoard[l][c] = VIDE;
+        }
+    }
+ 
+    // On place les 4 premiers pions pour le début de la partie
+ 
+    (*Board).tabBoard[T/2-1][T/2] = BLANC;
+    (*Board).tabBoard[T/2][T/2-1] = BLANC;
+ 
+    (*Board).tabBoard[T/2][T/2] = NOIR;
+    (*Board).tabBoard[T/2-1][T/2-1] = NOIR;
+}
+
+void AddCharAtPosition(Board b, int x, int y, char toBedAdded)
+{
+
+}
+
+void Move(Board b, int x, int y)
+{
+
+}
