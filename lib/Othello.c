@@ -4,7 +4,7 @@
 
 void partie(Joueur joueur1,Joueur joueur2) {
 	Board leBoard;
-	leBoard  = InitializeBoard(leBoard);
+	InitializeBoard(leBoard);
 	int finDePartie = 0;
 	int tourDeJeu = 0;					// tour de jeu a 0 = joueur1;
 	char positionNouveauPion[3];
@@ -17,11 +17,10 @@ void partie(Joueur joueur1,Joueur joueur2) {
 		afficherBoard(leBoard);
 		if(tourDeJeu == 0)
 		{
-			printf("\nC'est a %s de jouer:\n",leBoard.player1Name);
-			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)\n");
-			scanf("%s",positionNouveauPion);
+			printf("C'est a %s de jouer:\n",leBoard.player1Name);
+			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)");
+			scanf(positionNouveauPion);
 			positionNouveauPion[2] = 0;
-			leBoard.tabBoard[positionNouveauPion[0]-97][positionNouveauPion[1]] = 'o';
 			tourDeJeu = -1;
 		}
 		finDePartie = -1;
@@ -29,6 +28,15 @@ void partie(Joueur joueur1,Joueur joueur2) {
 
 
 
+	
 
+}
 
+void InitializeBoardOthello(Board b)
+{
+	b.tabBoard[8/2-1][8/2] = "O";
+    	b.tabBoard[8/2][8/2-1] = "O";
+ 
+    	b.tabBoard[8/2][8/2] = "X";
+    	b.tabBoard[8/2-1][8/2-1] = "X";
 }
