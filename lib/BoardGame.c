@@ -78,12 +78,30 @@ Board InitializeBoard(Board b)
 
 void AddCharAtPosition(Board b, int x, int y, char toBedAdded)
 {
-
+	
 }
 
 void Move(Board b, int x, int y)
 {
-
+	int l, c;
+	for (l=0; l<8; l++)
+    {
+       	for (c=0; c<8; c++)
+       	{
+       		if ((c = x && l = y) && b.tabBoard[l][c] == '2')
+       		{
+       			printf("Erreur le pion est déja sur cette case.")
+       		}
+      		else if (c = x && l = y) 
+      		{
+      			b.tabBoard[l][c] = '2'
+      		}
+      		else if (b.tabBoard[l][c] == '2')
+      		{
+      			b.tabBoard[l][c] = '1'
+      		}
+       	}
+    }
 }
 
 
