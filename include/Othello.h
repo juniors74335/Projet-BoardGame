@@ -6,7 +6,7 @@
 
 
 
-
+int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu);
 
 Board InitializeBoardOthello(Board b);
 

@@ -13,6 +13,8 @@ void partie(Joueur joueur1,Joueur joueur2) {
 	leBoard  = InitializeBoard(leBoard);
 	leBoard.player1Name = joueur1.Nom;
 	leBoard.player2Name = joueur2.Nom;
+	leBoard.player1Score = 2;
+	leBoard.player2Score = 2;
 	
 	leBoard = InitializeBoardOthello(leBoard);
 	while (!finDePartie) {
@@ -25,17 +27,38 @@ void partie(Joueur joueur1,Joueur joueur2) {
 		{
 			printf("\nC'est a %s de jouer:\n",leBoard.player1Name);
 			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)\n");
-			scanf("%s",positionNouveauPion);
 
-			
+
+
+			scanf("%s",positionNouveauPion);
 			positionNouveauPion[2] = 0;
+			//Verif Position correcte
+			while (verifPositionOk(positionNouveauPion,leBoard,tourDeJeu) == 0) {
+				printf("Ceci n'est pas une position valide, rentrez en une autre(d'abord colonne puis ligne)\n");
+				scanf("%s",positionNouveauPion);
+				positionNouveauPion[2] = 0;
+			}
+
+
+
+			// Change les nombres de pions des joueurs, change la valeur pour les cases sur le board
+			
+			
 			leBoard.tabBoard[positionNouveauPion[0]-97][positionNouveauPion[1]] = 'O';
+
+
+
+
+
+
+
+
 			tourDeJeu = -1;
 		}else {
 			tourDeJeu = 0;
 			printf("\nC'est a %s de jouer:\n",leBoard.player2Name);
 		}
-		
+
 		
 
 
@@ -55,10 +78,16 @@ void partie(Joueur joueur1,Joueur joueur2) {
 
 Board InitializeBoardOthello(Board b)
 {
-	b.tabBoard[3][4] = 79;
-    b.tabBoard[4][3] = 79;
+	b.tabBoard[3][4] = 'O';
+    b.tabBoard[4][3] = 'O';
  
-    b.tabBoard[4][4] = 88;
-    b.tabBoard[3][3] = 88;
+    b.tabBoard[4][4] = 'X';
+    b.tabBoard[3][3] = 'X';
     return b;
+}
+
+
+int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
+
+
 }
