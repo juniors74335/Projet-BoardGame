@@ -112,6 +112,7 @@ void afficherBoard(Board b)
    				printf(" %c",b.tabBoard[l][c]);
    			}
    			printf("\n");
+   			c++;
 		}
    	
    	return;

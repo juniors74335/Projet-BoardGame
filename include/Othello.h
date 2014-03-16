@@ -8,7 +8,7 @@
 
 
 
-
+Board InitializeBoardOthello(Board b);
 
 void partie(Joueur joueur1,Joueur joueur2);
 
