@@ -1,6 +1,7 @@
 #include "BoardGame.h"
 #include "stdio.h"
 #include "Othello.h"
+#include "stdlib.h"
 
 
 void partie(Joueur joueur1,Joueur joueur2) {
@@ -8,7 +9,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 	int finDePartie = 0;
 	int tourDeJeu = 0;					// tour de jeu a 0 = joueur1;
 	char positionNouveauPion[3];
-
+	int retourVerifPos;
 
 	leBoard  = InitializeBoard(leBoard);
 	leBoard.player1Name = joueur1.Nom;
@@ -25,7 +26,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 		///// Tour de jeu du joueur1
 		if(tourDeJeu == 0)
 		{
-			printf("\nC'est a %s de jouer:\n",leBoard.player1Name);
+			printf("\nC'est a %s de jouer:\n",&(leBoard.player1Name));
 			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)\n");
 
 
@@ -33,18 +34,22 @@ void partie(Joueur joueur1,Joueur joueur2) {
 			scanf("%s",positionNouveauPion);
 			positionNouveauPion[2] = 0;
 			//Verif Position correcte
-			while (verifPositionOk(positionNouveauPion,leBoard,tourDeJeu) == 0) {
+			while ((retourVerifPos = verifPositionOk(positionNouveauPion,leBoard,tourDeJeu)) == 0) {
+				// Debug
+
+				printf("Position rentre %c %c\n",positionNouveauPion[0],positionNouveauPion[1] );
+
+
 				printf("Ceci n'est pas une position valide, rentrez en une autre(d'abord colonne puis ligne)\n");
 				scanf("%s",positionNouveauPion);
 				positionNouveauPion[2] = 0;
 			}
 
 
-
 			// Change les nombres de pions des joueurs, change la valeur pour les cases sur le board
 			
 			
-			leBoard.tabBoard[positionNouveauPion[0]-97][positionNouveauPion[1]] = 'O';
+			//leBoard.tabBoard[positionNouveauPion[0]-97][positionNouveauPion[1]] = 'O';
 
 
 
@@ -56,7 +61,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 			tourDeJeu = -1;
 		}else {
 			tourDeJeu = 0;
-			printf("\nC'est a %s de jouer:\n",leBoard.player2Name);
+			printf("\nC'est a %s de jouer:\n",&(leBoard.player2Name));
 		}
 
 		
@@ -67,7 +72,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 
 
 		
-		finDePartie = -1;
+		//finDePartie = -1;
 	}
 
 
@@ -88,6 +93,157 @@ Board InitializeBoardOthello(Board b)
 
 
 int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
+	int l = mesDeuxChar[0]-97;
+	int c = mesDeuxChar[1] - 49;
+	int i;
+	int j;
+	int retour = 0;
 
+	// Debug
+
+	printf("valeur l et c %d %d\n",l,c);
+
+
+	if(tourDeJeu == 0) {
+
+		// Verif Droite
+		if((i = c + 1) < 8) {
+			if(b.tabBoard[l][i] == 'X') {
+				for(i = c + 2;i < 8;i++) {
+					if(b.tabBoard[l][i] == 219) {
+						break;
+					}
+					if(b.tabBoard[l][i] == 'O') {
+						retour += 1;
+					}
+				}
+			}
+		}
+		
+
+		// Verif Gauche
+		if((i = c - 1) >= 0) {
+			if(b.tabBoard[l][i] == 'X') {
+				for(i = c - 2;i >= 0;i--) {
+					if(b.tabBoard[l][i] == 219) {
+						break;
+					}
+					if(b.tabBoard[l][i] == 'O') {
+						retour += 10;
+					}
+				}
+			}
+		}
+
+
+		// Verif haut
+		if((i = l - 1) >= 0) {
+			if(b.tabBoard[i][c] == 'X') {
+				for(i = l - 2;i >= 0;i--) {
+					if(b.tabBoard[i][c] == 219) {
+						break;
+					}
+					if(b.tabBoard[i][c] == 'O') {
+						retour += 100;
+					}
+				}
+			}
+		}
+
+
+		// Verif bas
+
+		if((i = l + 1) < 8) {
+			if(b.tabBoard[i][c] == 'X') {
+				for(i = l + 2;i < 8;i++) {
+					if(b.tabBoard[i][c] == 219) {
+						break;
+					}
+					if(b.tabBoard[i][c] == 'O') {
+						retour += 1000;
+					}
+				}
+			}
+		}
+
+		// Verif 4 diago
+		// Diago  Haut Gauche
+		if((i = c - 1) >= 0) {
+			if((j = l -1) >= 0) {
+				if(b.tabBoard[i][j] == 'X') {
+					for(i = c - 2; i >= 0;i--) {
+						for(j = l - 2;j >= 0; j--) {
+							if(b.tabBoard[i][j] == 219) {
+								break;
+							}
+							if(b.tabBoard[i][j] == 'O')
+								retour += 10000;
+						}
+					}
+				}
+			}
+		}
+
+		// Diago Bas Gauche
+
+		if((i = c + 1) < 8) {
+			if((j = l -1) >= 0) {
+				if(b.tabBoard[i][j] == 'X') {
+					for(i = c + 2; i < 8;i++) {
+						for(j = l - 2;j >= 0; j--) {
+							if(b.tabBoard[i][j] == 219) {
+								break;
+							}
+							if(b.tabBoard[i][j] == 'O')
+								retour += 100000;
+						}
+					}
+				}
+			}
+		}
+
+		// Diago Haut Droite
+
+		if((i = c - 1) >= 0) {
+			if((j = l + 1) < 8) {
+				if(b.tabBoard[i][j] == 'X') {
+					for(i = c - 2; i >= 0;i--) {
+						for(j = l + 2;j < 8; j++) {
+							if(b.tabBoard[i][j] == 219) {
+								break;
+							}
+							if(b.tabBoard[i][j] == 'O')
+								retour += 1000000;
+						}
+					}
+				}
+			}
+		}
+
+		// Diago Bas Droite
+
+		if((i = c + 1) < 8) {
+			if((j = l + 1) < 8) {
+				if(b.tabBoard[i][j] == 'X') {
+					for(i = c + 2; i < 8;i++) {
+						for(j = l + 2;j < 8; j++) {
+							if(b.tabBoard[i][j] == 219) {
+								break;
+							}
+							if(b.tabBoard[i][j] == 'O')
+								retour += 10000000;
+						}
+					}
+				}
+			}
+		}
+
+
+		// Debug
+
+
+		// FIn des tests...
+		return retour;
+	}
 
 }
