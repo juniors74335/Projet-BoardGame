@@ -54,7 +54,7 @@ int main() 	{
 	retourne -2 si erreurs inconnue...
 */
 int Initialize (){
-	char unString[TAILLE_MAX_JOUEUR];
+	char* unString;
 	if(joueur1 == NULL)
 	{
 		joueur1 = (Joueur*) malloc(sizeof(Joueur));

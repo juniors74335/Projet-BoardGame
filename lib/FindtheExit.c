@@ -165,6 +165,7 @@ void partieFindTheExit()
         }
       }
       char direc = ' ';
+      printf("qqch");
       while(direc != 'G' && direc != 'D' && direc != 'H' && direc != 'B')
       {
         scanf("%c", direc);

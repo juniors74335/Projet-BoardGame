@@ -42,7 +42,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 
 
 			// Change les nombres de pions des joueurs, change la valeur pour les cases sur le board
-			updateBoard(leBoard,retourVerifPos,positionNouveauPion);
+			updateBoard(leBoard,retourVerifPos,tourDeJeu,positionNouveauPion);
 			
 			//leBoard.tabBoard[positionNouveauPion[0]-97][positionNouveauPion[1]] = 'O';
 
@@ -396,7 +396,7 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 
 
-void updateBoard(Board b,int valeurRetour,int tourDeJeu,int positionNouveauPion) {
+void updateBoard(Board b,int valeurRetour,int tourDeJeu,char* mesDeuxChar) {
 	int l = mesDeuxChar[0]-97;
 	int c = mesDeuxChar[1] - 49;
 	int i;
