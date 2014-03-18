@@ -33,6 +33,7 @@ Board InitializeBoard(Board b);
 void AddCharAtPosition(Board b, int x, int y, char toBeAdded);
 void Move(Board b, int x, int y);
 void afficherBoard(Board b);
+void f_purge(void);
 
 
 

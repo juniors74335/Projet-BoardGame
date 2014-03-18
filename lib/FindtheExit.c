@@ -87,6 +87,7 @@ void partieFindTheExit()
                   {
                     case 1:
                     case 2:
+                    case 3:
                     case 5:
                     case 6:
                     case 7:
@@ -167,26 +168,66 @@ void partieFindTheExit()
       char direc = ' ';
       while(direc != 'G' && direc != 'D' && direc != 'H' && direc != 'B')
       {
-        scanf("%c", direc);
+        int debug = 0;
+        printf("Rentrez une direction :\n");
+        f_purge();
+        debug = scanf("%c", &direc);
         switch (direc)
         {
             case 'G' :
-              Move(labi, c-1, l);
+              if (labi.tabBoard[c-1][l] == '1')
+              {
+                labi.tabBoard[c][l] = '1';
+                c -= 1;
+                labi.tabBoard[c][l] = '2';
+              }
+              else
+              {
+                printf("Vous comptez traverser les murs?\n");
+              }
               break;
             case 'D' :
-              Move(labi, c+1, l);
+              if (labi.tabBoard[c+1][l] == '1')
+              {
+                labi.tabBoard[c][l] = '1';
+                c += 1;
+                labi.tabBoard[c][l] = '2';
+              }
+              else
+              {
+                printf("Vous comptez traverser les murs?\n");
+              }
               break;
             case 'H' :
-              Move(labi, l-1, l);
+              if (labi.tabBoard[c][l-1] == '1')
+              {
+                labi.tabBoard[c][l] = '1';
+                l -= 1;
+                labi.tabBoard[c][l] = '2';
+              }
+              else
+              {
+                printf("Vous comptez traverser les murs?\n");
+              }
               break;
             case 'B' :
-              Move(labi, l+1, l);
+              if (labi.tabBoard[c][l+1] == '1')
+              {
+                labi.tabBoard[c][l] = '1';
+                l += 1;
+                labi.tabBoard[c][l] = '2';
+              }
+              else
+              {
+                printf("Vous comptez traverser les murs?\n");
+              }
               break;
             default :
-              printf("Mauvaise direction\n Rentrez une direction valide :");
+              printf("Mauvaise direction\n Rentrez une direction valide :\n");
               break;
         }
-      }      
+      } 
+      afficherBoard(labi);     
       tour ++;
     }
     printf("Bravo vous avez gagé en %d tours!", (tour - 1));

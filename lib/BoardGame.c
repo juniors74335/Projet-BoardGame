@@ -39,7 +39,14 @@ int main() 	{
 }
 
 
-
+void f_purge()
+{
+    int c;
+ 
+    while ((c = getchar()) != '\n' && c != EOF)
+        {
+        }
+}
 
 
 
