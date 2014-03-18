@@ -1,10 +1,9 @@
-#include "BoardGame.h"
+#include "FindtheExit.h"
 
 void partieFindTheExit()
 {
-	int l,c;
+  int l,c;
 	Board labi;
-	Initialize();
 	labi = InitializeBoard(labi);
 	for (l=0; l<8; l++)
     {
@@ -135,7 +134,7 @@ void partieFindTheExit()
   while (labi.tabBoard[7][7] != '2')
     {
       printf("Tour %d\n", tour);
-      printf('Vous pouvez allez : \n')
+      printf("Vous pouvez allez : \n");
       if (c>0)
       {
         if (labi.tabBoard[c-1][l] == '1')
@@ -164,24 +163,30 @@ void partieFindTheExit()
           printf("En bas (entrer B)\n");
         }
       }
-      char direc;
-      scanf("%c", direc);
-      switch (direc)
+      char direc = ' ';
+      while(direc != 'G' && direc != 'D' && direc != 'H' && direc != 'B')
+      {
+        scanf("%c", direc);
+        switch (direc)
         {
-          case 'G'
-            Move(labi, c-1, l);
-            break;
-          case 'D'
-            Move(labi, c+1, l);
-            break;
-          case 'H'
-            Move(labi, l-1, l);
-            break;
-          case 'B'
-            Move(labi, l+1, l);
-            break;
-        }      
+            case 'G' :
+              Move(labi, c-1, l);
+              break;
+            case 'D' :
+              Move(labi, c+1, l);
+              break;
+            case 'H' :
+              Move(labi, l-1, l);
+              break;
+            case 'B' :
+              Move(labi, l+1, l);
+              break;
+            default :
+              printf("Mauvaise direction\n Rentrez une direction valide :");
+              break;
+        }
+      }      
       tour ++;
     }
-    printf("Bravo vous avez gagé en %d tours!", (tour - 1);
+    printf("Bravo vous avez gagé en %d tours!", (tour - 1));
 }

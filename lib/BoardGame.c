@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "Othello.h"
+#include "FindTheExit.h"
 
 
 Joueur* joueur1 = NULL;
