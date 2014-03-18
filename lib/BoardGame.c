@@ -11,8 +11,28 @@ Joueur* joueur2 = NULL;
 
 
 int main() 	{
+	int retour = 0;
+
+
+	
 	Initialize();
-	partie(*joueur1,*joueur2);
+	printf("Bonjour et bienvenue sur l'application BoardGame\n");
+	printf("Si vous voulez jouer a l'Othello tapez 1\n");
+	printf("Si vous voulez jouer a FindTheExit, tapez 2\n");
+
+	scanf("%d",&retour);
+	while(retour != 2 || retour != 1) {
+		scanf("%d",&retour);
+	}
+	if(retour == 1) {
+		partie(*joueur1,*joueur2);
+	}else if(retour == 2) {
+		partieFindTheExit();
+	}
+
+
+
+	
 	return 0;
 
 }
