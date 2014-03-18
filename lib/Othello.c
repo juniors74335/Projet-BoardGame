@@ -47,7 +47,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 
 
 			// Change les nombres de pions des joueurs, change la valeur pour les cases sur le board
-			
+			updateBoard(leBoard,retourVerifPos);
 			
 			//leBoard.tabBoard[positionNouveauPion[0]-97][positionNouveauPion[1]] = 'O';
 
@@ -60,8 +60,25 @@ void partie(Joueur joueur1,Joueur joueur2) {
 
 			tourDeJeu = -1;
 		}else {
+			printf("\nC'est a %s de jouer:\n",&(leBoard.player2Name));		
+			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)\n");
+
+
+
+			scanf("%s",positionNouveauPion);
+			positionNouveauPion[2] = 0;
+			//Verif Position correcte
+			while ((retourVerifPos = verifPositionOk(positionNouveauPion,leBoard,tourDeJeu)) == 0) {
+				// Debug
+
+				printf("Position rentre %c %c\n",positionNouveauPion[0],positionNouveauPion[1] );
+
+
+				printf("Ceci n'est pas une position valide, rentrez en une autre(d'abord colonne puis ligne)\n");
+				scanf("%s",positionNouveauPion);
+				positionNouveauPion[2] = 0;
+			}	
 			tourDeJeu = 0;
-			printf("\nC'est a %s de jouer:\n",&(leBoard.player2Name));
 		}
 
 		
@@ -71,7 +88,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 
 
 
-		
+		// quand fin de partie?
 		//finDePartie = -1;
 	}
 
@@ -243,7 +260,156 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 
 		// FIn des tests...
-		return retour;
+	}else if(tourDeJeu == 0) {
+
+		// Verif Droite
+		if((i = c + 1) < 8) {
+			if(b.tabBoard[l][i] == 'O') {
+				for(i = c + 2;i < 8;i++) {
+					if(b.tabBoard[l][i] == 219) {
+						break;
+					}
+					if(b.tabBoard[l][i] == 'X') {
+						retour += 1;
+					}
+				}
+			}
+		}
+		
+
+		// Verif Gauche
+		if((i = c - 1) >= 0) {
+			if(b.tabBoard[l][i] == 'O') {
+				for(i = c - 2;i >= 0;i--) {
+					if(b.tabBoard[l][i] == 219) {
+						break;
+					}
+					if(b.tabBoard[l][i] == 'X') {
+						retour += 10;
+					}
+				}
+			}
+		}
+
+
+		// Verif haut
+		if((i = l - 1) >= 0) {
+			if(b.tabBoard[i][c] == 'O') {
+				for(i = l - 2;i >= 0;i--) {
+					if(b.tabBoard[i][c] == 219) {
+						break;
+					}
+					if(b.tabBoard[i][c] == 'X') {
+						retour += 100;
+					}
+				}
+			}
+		}
+
+
+		// Verif bas
+
+		if((i = l + 1) < 8) {
+			if(b.tabBoard[i][c] == 'O') {
+				for(i = l + 2;i < 8;i++) {
+					if(b.tabBoard[i][c] == 219) {
+						break;
+					}
+					if(b.tabBoard[i][c] == 'X') {
+						retour += 1000;
+					}
+				}
+			}
+		}
+
+		// Verif 4 diago
+		// Diago  Haut Gauche
+		if((i = c - 1) >= 0) {
+			if((j = l -1) >= 0) {
+				if(b.tabBoard[i][j] == 'O') {
+					for(i = c - 2; i >= 0;i--) {
+						for(j = l - 2;j >= 0; j--) {
+							if(b.tabBoard[i][j] == 219) {
+								break;
+							}
+							if(b.tabBoard[i][j] == 'X')
+								retour += 10000;
+						}
+					}
+				}
+			}
+		}
+
+		// Diago Bas Gauche
+
+		if((i = c + 1) < 8) {
+			if((j = l -1) >= 0) {
+				if(b.tabBoard[i][j] == 'O') {
+					for(i = c + 2; i < 8;i++) {
+						for(j = l - 2;j >= 0; j--) {
+							if(b.tabBoard[i][j] == 219) {
+								break;
+							}
+							if(b.tabBoard[i][j] == 'X')
+								retour += 100000;
+						}
+					}
+				}
+			}
+		}
+
+		// Diago Haut Droite
+
+		if((i = c - 1) >= 0) {
+			if((j = l + 1) < 8) {
+				if(b.tabBoard[i][j] == 'O') {
+					for(i = c - 2; i >= 0;i--) {
+						for(j = l + 2;j < 8; j++) {
+							if(b.tabBoard[i][j] == 219) {
+								break;
+							}
+							if(b.tabBoard[i][j] == 'X')
+								retour += 1000000;
+						}
+					}
+				}
+			}
+		}
+
+		// Diago Bas Droite
+
+		if((i = c + 1) < 8) {
+			if((j = l + 1) < 8) {
+				if(b.tabBoard[i][j] == 'O') {
+					for(i = c + 2; i < 8;i++) {
+						for(j = l + 2;j < 8; j++) {
+							if(b.tabBoard[i][j] == 219) {
+								break;
+							}
+							if(b.tabBoard[i][j] == 'X')
+								retour += 10000000;
+						}
+					}
+				}
+			}
+		}
+
+
+		// Debug
+
+
+		// FIn des tests...
+		
 	}
+	return retour;
+}
+
+
+
+void updateBoard(Board b,int retour) {
+
 
 }
+
+
+

@@ -22,8 +22,11 @@ int main() 	{
 	printf("Si vous voulez jouer a FindTheExit, tapez 2\n");
 
 	scanf("%d",&retour);
-	while(retour != 2 || retour != 1) {
+	printf("qqch\n");
+	printf("%d\n",retour);
+	while(retour != 2 && retour != 1) {
 		scanf("%d",&retour);
+		printf("qqch\n");
 	}
 	if(retour == 1) {
 		partie(*joueur1,*joueur2);
