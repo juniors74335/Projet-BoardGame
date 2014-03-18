@@ -27,7 +27,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 		if(tourDeJeu == 0)
 		{
 			printf("C'est a %s de jouer : \n", joueur1.Nom);
-			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)\n")
+			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord ligne puis colonne)\n");
 			scanf("%s",positionNouveauPion);
 			positionNouveauPion[2] = 0;
 			//Verif Position correcte
@@ -53,7 +53,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 			tourDeJeu = -1;
 		}else {
 			printf("C'est a %s de jouer : \n", joueur2.Nom);		
-			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)\n");
+			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord ligne puis colonne)\n");
 			scanf("%s",positionNouveauPion);
 			positionNouveauPion[2] = 0;
 			//Verif Position correcte
