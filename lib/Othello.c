@@ -260,7 +260,7 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 
 		// FIn des tests...
-	}else if(tourDeJeu == 0) {
+	}else if(tourDeJeu == 1) {
 
 		// Verif Droite
 		if((i = c + 1) < 8) {
