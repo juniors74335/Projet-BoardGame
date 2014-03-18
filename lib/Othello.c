@@ -42,7 +42,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 
 
 			// Change les nombres de pions des joueurs, change la valeur pour les cases sur le board
-			updateBoard(leBoard,retourVerifPos,tourDeJeu,positionNouveauPion);
+			leBoard = updateBoard(leBoard,retourVerifPos,tourDeJeu,positionNouveauPion);
 			
 			//leBoard.tabBoard[positionNouveauPion[0]-97][positionNouveauPion[1]] = 'O';
 
@@ -68,6 +68,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 				scanf("%s",positionNouveauPion);
 				positionNouveauPion[2] = 0;
 			}	
+			leBoard = updateBoard(leBoard,retourVerifPos,tourDeJeu,positionNouveauPion);
 			tourDeJeu = 0;
 		}
 
@@ -106,9 +107,6 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 	int j;
 	int retour = 0;
 
-	// Debug
-
-	printf("valeur l et c %d %d\n",l,c);
 
 
 	if(tourDeJeu == 0) {
@@ -396,12 +394,13 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 
 
-void updateBoard(Board b,int valeurRetour,int tourDeJeu,char* mesDeuxChar) {
+Board updateBoard(Board b,int valeurRetour,int tourDeJeu,char* mesDeuxChar) {
 	int l = mesDeuxChar[0]-97;
 	int c = mesDeuxChar[1] - 49;
 	int i;
 	int j;
 	if(tourDeJeu == 0) {
+		b.tabBoard[c][l] = 'O';
 		if(valeurRetour - 10000000 >= 0) {
 			valeurRetour -= 10000000;
 			for(i = c + 1; i < 8;i++) {
@@ -438,8 +437,162 @@ void updateBoard(Board b,int valeurRetour,int tourDeJeu,char* mesDeuxChar) {
 				}
 			}
 		}
-	}
+		if(valeurRetour - 10000 >= 0) {
+			valeurRetour -= 10000;
+			for(i = c - 1; i >= 0;i--) {
+				for(j = l - 1;j >= 0; j--) {
+					if(b.tabBoard[i][j] == 'O') {
+						break;
+					}
+					if(b.tabBoard[i][j] == 'X')
+						b.tabBoard[i][j] = 'O';
+				}
+			}
+		}
+		if(valeurRetour - 1000 >= 0) {
+			valeurRetour -= 1000;
+			for(i = l + 1;i < 8;i++) {
+				if(b.tabBoard[i][c] == 'O') {
+					break;
+				}
+				if(b.tabBoard[i][c] == 'X') {
+					b.tabBoard[i][c] = 'O';
+				}
+			}
+		}
+		if(valeurRetour - 100 >= 0) {
+			valeurRetour -= 100;
+			for(i = l - 1;i >= 0;i--) {
+				if(b.tabBoard[i][c] == 'O') {
+					break;
+				}
+				if(b.tabBoard[i][c] == 'X') {
+					b.tabBoard[i][c] = 'O';
+				}
+			}
+		}
+		if(valeurRetour - 10 >= 0) {
+			valeurRetour -= 10;
+			for(i = c - 1;i >= 0;i--) {
+				if(b.tabBoard[l][i] == 'O') {
+					break;
+				}
+				if(b.tabBoard[l][i] == 'X') {
+					b.tabBoard[l][i] = 'O';
+				}
+			}
+		}
+		if((valeurRetour - 1) >= 0) {
+			valeurRetour -= 1;
+
 	
+			for(i = c + 1;i < 8;i++) {
+				if(b.tabBoard[l][i] == 'O') {
+					break;
+				}
+				if(b.tabBoard[l][i] == 'X') {
+					b.tabBoard[l][i] = 'O';
+				}
+			}
+		}
+
+
+	}else if(tourDeJeu == -1) {
+		b.tabBoard[c][l] = 'X';
+		if(valeurRetour - 10000000 >= 0) {
+			valeurRetour -= 10000000;
+			for(i = c + 1; i < 8;i++) {
+				for(j = l + 1;j < 8; j++) {
+					if(b.tabBoard[i][j] == 'X') {
+						break;
+					}
+					if(b.tabBoard[i][j] == 'O')
+						b.tabBoard[i][j] = 'X';
+				}
+			}
+		}
+		if(valeurRetour - 1000000 >= 0) {
+			valeurRetour -= 1000000;
+			for(i = c - 1; i >= 0;i--) {
+				for(j = l + 1;j < 8; j++) {
+					if(b.tabBoard[i][j] == 'X') {
+						break;
+					}
+					if(b.tabBoard[i][j] == 'O')
+						b.tabBoard[i][j] = 'X';
+				}
+			}
+		}
+		if(valeurRetour - 100000 >= 0) {
+			valeurRetour -= 100000;
+			for(i = c + 1; i < 8;i++) {
+				for(j = l - 1;j >= 0; j--) {
+					if(b.tabBoard[i][j] == 'X') {
+						break;
+					}
+					if(b.tabBoard[i][j] == 'O')
+						b.tabBoard[i][j] = 'X';
+				}
+			}
+		}
+		if(valeurRetour - 10000 >= 0) {
+			valeurRetour -= 10000;
+			for(i = c - 1; i >= 0;i--) {
+				for(j = l - 1;j >= 0; j--) {
+					if(b.tabBoard[i][j] == 'X') {
+						break;
+					}
+					if(b.tabBoard[i][j] == 'O')
+						b.tabBoard[i][j] = 'X';
+				}
+			}
+		}
+		if(valeurRetour - 1000 >= 0) {
+			valeurRetour -= 1000;
+			for(i = l + 1;i < 8;i++) {
+				if(b.tabBoard[i][c] == 'X') {
+					break;
+				}
+				if(b.tabBoard[i][c] == 'O') {
+					b.tabBoard[i][c] = 'X';
+				}
+			}
+		}
+		if(valeurRetour - 100 >= 0) {
+			valeurRetour -= 100;
+			for(i = l - 1;i >= 0;i--) {
+				if(b.tabBoard[i][c] == 'X') {
+					break;
+				}
+				if(b.tabBoard[i][c] == 'O') {
+					b.tabBoard[i][c] = 'X';
+				}
+			}
+		}
+		if(valeurRetour - 10 >= 0) {
+			valeurRetour -= 10;
+			for(i = c - 1;i >= 0;i--) {
+				if(b.tabBoard[l][i] == 'X') {
+					break;
+				}
+				if(b.tabBoard[l][i] == 'O') {
+					b.tabBoard[l][i] = 'X';
+				}
+			}
+		}
+		if(valeurRetour - 1 >= 0) {
+			valeurRetour -= 1;
+			for(i = c + 1;i < 8;i++) {
+				if(b.tabBoard[l][i] == 'X') {
+					break;
+				}
+				if(b.tabBoard[l][i] == 'O') {
+					b.tabBoard[l][i] = 'X';
+				}
+			}
+		}
+	}
+	return b;
 
 }
 

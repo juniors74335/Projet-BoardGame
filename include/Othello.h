@@ -12,6 +12,6 @@ Board InitializeBoardOthello(Board b);
 
 void partie(Joueur joueur1,Joueur joueur2);
 
-void updateBoard(Board b,int valeurRetour,int tourDeJeu,char* positionNouveauPion);
+Board updateBoard(Board b,int valeurRetour,int tourDeJeu,char* positionNouveauPion);
 
 #endif
