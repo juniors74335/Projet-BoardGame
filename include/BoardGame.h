@@ -9,7 +9,7 @@
 
 typedef struct Joueur
 {
-	char *Nom;
+	char Nom[TAILLE_MAX_JOUEUR];
 	int nbrVictoire;
 }Joueur;
 

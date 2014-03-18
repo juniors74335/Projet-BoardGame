@@ -35,11 +35,6 @@ void partie(Joueur joueur1,Joueur joueur2) {
 			positionNouveauPion[2] = 0;
 			//Verif Position correcte
 			while ((retourVerifPos = verifPositionOk(positionNouveauPion,leBoard,tourDeJeu)) == 0) {
-				// Debug
-
-				printf("Position rentre %c %c\n",positionNouveauPion[0],positionNouveauPion[1] );
-
-
 				printf("Ceci n'est pas une position valide, rentrez en une autre(d'abord colonne puis ligne)\n");
 				scanf("%s",positionNouveauPion);
 				positionNouveauPion[2] = 0;
@@ -47,7 +42,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 
 
 			// Change les nombres de pions des joueurs, change la valeur pour les cases sur le board
-			updateBoard(leBoard,retourVerifPos);
+			updateBoard(leBoard,retourVerifPos,positionNouveauPion);
 			
 			//leBoard.tabBoard[positionNouveauPion[0]-97][positionNouveauPion[1]] = 'O';
 
@@ -69,11 +64,6 @@ void partie(Joueur joueur1,Joueur joueur2) {
 			positionNouveauPion[2] = 0;
 			//Verif Position correcte
 			while ((retourVerifPos = verifPositionOk(positionNouveauPion,leBoard,tourDeJeu)) == 0) {
-				// Debug
-
-				printf("Position rentre %c %c\n",positionNouveauPion[0],positionNouveauPion[1] );
-
-
 				printf("Ceci n'est pas une position valide, rentrez en une autre(d'abord colonne puis ligne)\n");
 				scanf("%s",positionNouveauPion);
 				positionNouveauPion[2] = 0;
@@ -406,8 +396,26 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 
 
-void updateBoard(Board b,int retour) {
-
+void updateBoard(Board b,int valeurRetour,int tourDeJeu,int positionNouveauPion) {
+	int l = mesDeuxChar[0]-97;
+	int c = mesDeuxChar[1] - 49;
+	int i;
+	int j;
+	if(tourDeJeu == 0) {
+		if(valeurRetour - 10000000 >= 0) {
+			valeurRetour -= 10000000;
+			for(i = c + 2; i < 8;i++) {
+				for(j = l + 2;j < 8; j++) {
+					if(b.tabBoard[i][j] == 'O') {
+						break;
+					}
+					if(b.tabBoard[i][j] == 'X')
+						b.tabBoard[i][j] = '0';
+				}
+			}
+		}
+	}
+	
 
 }
 
