@@ -27,7 +27,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 		if(tourDeJeu == 0)
 		{
 			printf("\nC'est a %s de jouer:\n",&(leBoard.player1Name));
-			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)\n");
+			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord ligne puis colonne)\n");
 
 
 
@@ -35,7 +35,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 			positionNouveauPion[2] = 0;
 			//Verif Position correcte
 			while ((retourVerifPos = verifPositionOk(positionNouveauPion,leBoard,tourDeJeu)) == 0) {
-				printf("Ceci n'est pas une position valide, rentrez en une autre(d'abord colonne puis ligne)\n");
+				printf("Ceci n'est pas une position valide, rentrez en une autre(d'abord ligne puis colonne)\n");
 				scanf("%s",positionNouveauPion);
 				positionNouveauPion[2] = 0;
 			}
@@ -56,7 +56,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 			tourDeJeu = -1;
 		}else {
 			printf("\nC'est a %s de jouer:\n",&(leBoard.player2Name));		
-			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord colonne puis ligne)\n");
+			printf("Entrez les coordonnes du pion que vous souhaitez rentrez (d'abord ligne puis colonne)\n");
 
 
 
@@ -64,7 +64,7 @@ void partie(Joueur joueur1,Joueur joueur2) {
 			positionNouveauPion[2] = 0;
 			//Verif Position correcte
 			while ((retourVerifPos = verifPositionOk(positionNouveauPion,leBoard,tourDeJeu)) == 0) {
-				printf("Ceci n'est pas une position valide, rentrez en une autre(d'abord colonne puis ligne)\n");
+				printf("Ceci n'est pas une position valide, rentrez en une autre(d'abord ligne puis colonne)\n");
 				scanf("%s",positionNouveauPion);
 				positionNouveauPion[2] = 0;
 			}	
@@ -250,7 +250,7 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 
 		// FIn des tests...
-	}else if(tourDeJeu == 1) {
+	}else if(tourDeJeu == -1) {
 
 		// Verif Droite
 		if((i = c + 1) < 8) {
@@ -404,13 +404,37 @@ void updateBoard(Board b,int valeurRetour,int tourDeJeu,char* mesDeuxChar) {
 	if(tourDeJeu == 0) {
 		if(valeurRetour - 10000000 >= 0) {
 			valeurRetour -= 10000000;
-			for(i = c + 2; i < 8;i++) {
-				for(j = l + 2;j < 8; j++) {
+			for(i = c + 1; i < 8;i++) {
+				for(j = l + 1;j < 8; j++) {
 					if(b.tabBoard[i][j] == 'O') {
 						break;
 					}
 					if(b.tabBoard[i][j] == 'X')
-						b.tabBoard[i][j] = '0';
+						b.tabBoard[i][j] = 'O';
+				}
+			}
+		}
+		if(valeurRetour - 1000000 >= 0) {
+			valeurRetour -= 1000000;
+			for(i = c - 1; i >= 0;i--) {
+				for(j = l + 1;j < 8; j++) {
+					if(b.tabBoard[i][j] == 'O') {
+						break;
+					}
+					if(b.tabBoard[i][j] == 'X')
+						b.tabBoard[i][j] = 'O';
+				}
+			}
+		}
+		if(valeurRetour - 100000 >= 0) {
+			valeurRetour -= 100000;
+			for(i = c + 1; i < 8;i++) {
+				for(j = l - 1;j >= 0; j--) {
+					if(b.tabBoard[i][j] == 'O') {
+						break;
+					}
+					if(b.tabBoard[i][j] == 'X')
+						b.tabBoard[i][j] = 'O';
 				}
 			}
 		}
