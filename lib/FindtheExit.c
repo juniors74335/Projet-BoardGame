@@ -128,4 +128,60 @@ void partieFindTheExit()
            		}
        	}
     }
+  labi.tabBoard[0][0] = '2';
+  c = 0;
+  l = 0;
+  int tour = 1;
+  while (labi.tabBoard[7][7] != '2')
+    {
+      printf("Tour %d\n", tour);
+      printf('Vous pouvez allez : \n')
+      if (c>0)
+      {
+        if (labi.tabBoard[c-1][l] == '1')
+        {
+          printf("A gauche (entrer G)\n");
+        }
+      }
+      if (c<7)
+      {
+        if (labi.tabBoard[c+1][l] == '1')
+        {
+          printf("A droite (entrer D)\n");
+        }
+      }
+      if (l>0)
+      {
+        if (labi.tabBoard[c][l-1] == '1')
+        {
+          printf("En haut (entrer H)\n");
+        }
+      }
+      if (l<7)
+      {
+        if (labi.tabBoard[c][l+1] == '1')
+        {
+          printf("En bas (entrer B)\n");
+        }
+      }
+      char direc;
+      scanf("%c", direc);
+      switch (direc)
+        {
+          case 'G'
+            Move(labi, c-1, l);
+            break;
+          case 'D'
+            Move(labi, c+1, l);
+            break;
+          case 'H'
+            Move(labi, l-1, l);
+            break;
+          case 'B'
+            Move(labi, l+1, l);
+            break;
+        }      
+      tour ++;
+    }
+    printf("Bravo vous avez gagé en %d tours!", (tour - 1);
 }
