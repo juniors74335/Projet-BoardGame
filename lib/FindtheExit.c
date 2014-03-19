@@ -18,10 +18,10 @@ void partieFindTheExit()
                     case 2:
                     case 3:
                     case 4:
-                      labi.tabBoard[c][l] = '1';
+                      labi.tabBoard[c][l] = ' ';
                       break;
                     default:
-                      labi.tabBoard[c][l] ='0';
+                      labi.tabBoard[c][l] = (char)219;
                       break;
                   }
                   break;
@@ -32,10 +32,10 @@ void partieFindTheExit()
                     case 1:
                     case 2:
                     case 4:
-                      labi.tabBoard[c][l] = '1';
+                      labi.tabBoard[c][l] = ' ';
                       break;
                     default:
-                      labi.tabBoard[c][l] = '0';
+                      labi.tabBoard[c][l] = (char)219;
                       break;
                   }
                   break;
@@ -46,10 +46,10 @@ void partieFindTheExit()
                     case 6:
                     case 7:
                     case 4:
-                      labi.tabBoard[c][l] = '1';
+                      labi.tabBoard[c][l] = ' ';
                       break;
                     default:
-                      labi.tabBoard[c][l] = '0';
+                      labi.tabBoard[c][l] = (char)219;
                       break;
                   }
                   break;
@@ -60,10 +60,10 @@ void partieFindTheExit()
                     case 2:
                     case 3:
                     case 7:
-                      labi.tabBoard[c][l] = '1';
+                      labi.tabBoard[c][l] = ' ';
                       break;
                     default:
-                      labi.tabBoard[c][l] = '0';
+                      labi.tabBoard[c][l] = (char)219;
                       break;
                   }
                   break;
@@ -75,10 +75,10 @@ void partieFindTheExit()
                     case 3:
                     case 4:
                     case 7:
-                      labi.tabBoard[c][l] = '1';
+                      labi.tabBoard[c][l] = ' ';
                       break;
                     default:
-                      labi.tabBoard[c][l] = '0';
+                      labi.tabBoard[c][l] = (char)219;
                       break;
                   }
                   break;
@@ -91,10 +91,10 @@ void partieFindTheExit()
                     case 5:
                     case 6:
                     case 7:
-                      labi.tabBoard[c][l] = '1';
+                      labi.tabBoard[c][l] = ' ';
                       break;
                     default:
-                      labi.tabBoard[c][l] = '0';
+                      labi.tabBoard[c][l] = (char)219;
                       break;
                   }
                   break;
@@ -102,10 +102,10 @@ void partieFindTheExit()
                   switch (l)
                   {
                     case 3:
-                      labi.tabBoard[c][l] = '1';
+                      labi.tabBoard[c][l] = ' ';
                       break;
                     default:
-                      labi.tabBoard[c][l] = '0';
+                      labi.tabBoard[c][l] = (char)219;
                       break;
                   }
                   break;
@@ -118,49 +118,49 @@ void partieFindTheExit()
                     case 2:
                     case 3:
                     case 4:
-                      labi.tabBoard[c][l] = '1';
+                      labi.tabBoard[c][l] = ' ';
                       break;
                     default:
-                      labi.tabBoard[c][l] = '0';
+                      labi.tabBoard[c][l] = (char)219;
                       break;
                   }
                   break;
               }
         }
     }
-    afficherBoard(labi);
-  labi.tabBoard[0][0] = '2';
+  labi.tabBoard[0][0] = 'X';
+  afficherBoard(labi);
   c = 0;
   l = 0;
   int tour = 1;
-  while (labi.tabBoard[7][7] != '2')
+  while (labi.tabBoard[7][7] != 'X')
     {
       printf("Tour %d\n", tour);
       printf("Vous pouvez allez : \n");
       if (c>0)
       {
-        if (labi.tabBoard[c-1][l] == '1')
+        if (labi.tabBoard[c-1][l] == ' ')
         {
           printf("A gauche (entrer G)\n");
         }
       }
       if (c<7)
       {
-        if (labi.tabBoard[c+1][l] == '1')
+        if (labi.tabBoard[c+1][l] == ' ')
         {
           printf("A droite (entrer D)\n");
         }
       }
       if (l>0)
       {
-        if (labi.tabBoard[c][l-1] == '1')
+        if (labi.tabBoard[c][l-1] == ' ')
         {
           printf("En haut (entrer H)\n");
         }
       }
       if (l<7)
       {
-        if (labi.tabBoard[c][l+1] == '1')
+        if (labi.tabBoard[c][l+1] == ' ')
         {
           printf("En bas (entrer B)\n");
         }
@@ -175,11 +175,11 @@ void partieFindTheExit()
         switch (direc)
         {
             case 'G' :
-              if (labi.tabBoard[c-1][l] == '1')
+              if (labi.tabBoard[c-1][l] == ' ')
               {
-                labi.tabBoard[c][l] = '1';
+                labi.tabBoard[c][l] = ' ';
                 c -= 1;
-                labi.tabBoard[c][l] = '2';
+                labi.tabBoard[c][l] = 'X';
               }
               else
               {
@@ -187,11 +187,11 @@ void partieFindTheExit()
               }
               break;
             case 'D' :
-              if (labi.tabBoard[c+1][l] == '1')
+              if (labi.tabBoard[c+1][l] == ' ')
               {
-                labi.tabBoard[c][l] = '1';
+                labi.tabBoard[c][l] = ' ';
                 c += 1;
-                labi.tabBoard[c][l] = '2';
+                labi.tabBoard[c][l] = 'X';
               }
               else
               {
@@ -199,11 +199,11 @@ void partieFindTheExit()
               }
               break;
             case 'H' :
-              if (labi.tabBoard[c][l-1] == '1')
+              if (labi.tabBoard[c][l-1] == ' ')
               {
-                labi.tabBoard[c][l] = '1';
+                labi.tabBoard[c][l] = ' ';
                 l -= 1;
-                labi.tabBoard[c][l] = '2';
+                labi.tabBoard[c][l] = 'X';
               }
               else
               {
@@ -211,11 +211,11 @@ void partieFindTheExit()
               }
               break;
             case 'B' :
-              if (labi.tabBoard[c][l+1] == '1')
+              if (labi.tabBoard[c][l+1] == ' ')
               {
-                labi.tabBoard[c][l] = '1';
+                labi.tabBoard[c][l] = ' ';
                 l += 1;
-                labi.tabBoard[c][l] = '2';
+                labi.tabBoard[c][l] = 'X';
               }
               else
               {
