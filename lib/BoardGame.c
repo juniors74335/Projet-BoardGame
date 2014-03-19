@@ -22,13 +22,15 @@ int main() 	{
 	printf("Si vous voulez jouer a FindTheExit, tapez 2\n");
 
 	scanf("%d",&retour);
-	while(retour != 2 && retour != 1) {
+	while(retour != 2 && retour != 1 && retour != 3) {
 		scanf("%d",&retour);
 	}
 	if(retour == 1) {
 		partie(*joueur1,*joueur2);
 	}else if(retour == 2) {
 		partieFindTheExit();
+	}else if(retour == 3) {
+		partiePower4(*joueur1, *joueur2);
 	}
 
 
