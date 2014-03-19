@@ -18,6 +18,8 @@ int main() 	{
 
 	
 	Initialize();
+	printf("%s\n", joueur1->Nom);
+	printf("%s\n", joueur2->Nom);
 	printf("Bonjour et bienvenue sur l'application BoardGame\n");
 	printf("Si vous voulez jouer a l'Othello tapez 1\n");
 	printf("Si vous voulez jouer a FindTheExit, tapez 2\n");
@@ -65,21 +67,22 @@ void f_purge()
 	retourne -2 si erreurs inconnue...
 */
 int Initialize (){
-	char* unString;
+	char* unString1;
+	char* unString2;
 	if(joueur1 == NULL)
 	{
 		joueur1 = (Joueur*) malloc(sizeof(Joueur));
 		printf("Veuillez entrez le nom du joueur 1 :\n");
-		scanf("%s",unString);
-		joueur1->Nom = unString;
+		scanf("%s",unString1);
+		joueur1->Nom = unString1;
 		joueur1->nbrVictoire = 0;
 	}
 	if(joueur2 == NULL)
 	{
 		joueur2 = (Joueur*) malloc(sizeof(Joueur));
 		printf("Veuillez entrez le nom du joueur 2 :\n");
-		scanf("%s",unString);
-		joueur2->Nom = unString;
+		scanf("%s",unString2);
+		joueur2->Nom = unString2;
 		joueur2->nbrVictoire = 0;
 	}
 	if(joueur2 != NULL && joueur1 != NULL)
