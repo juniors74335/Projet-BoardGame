@@ -20,6 +20,7 @@ int main() 	{
 	printf("Bonjour et bienvenue sur l'application BoardGame\n");
 	printf("Si vous voulez jouer a l'Othello tapez 1\n");
 	printf("Si vous voulez jouer a FindTheExit, tapez 2\n");
+	printf("Si vous voulez jouer au Puissance 4, tapez 3\n");
 
 	scanf("%d",&retour);
 	while(retour != 2 && retour != 1 && retour != 3) {

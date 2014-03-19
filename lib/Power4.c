@@ -1,5 +1,7 @@
 #include "Power4.h"
 #include "BoardGame.h"
+#include "stdio.h"
+#include "stdlib.h"
 
 void partiePower4(Joueur joueur1, Joueur joueur2)
 {
@@ -9,11 +11,11 @@ void partiePower4(Joueur joueur1, Joueur joueur2)
   c = 0;
   int finDePartie = 0;
   int tourDeJeu = 0;
-  int newCol;
-  int puissance1 = 0;
-  int puissance2 = 0;
-  int totPuissance = 0;
+  char newCol[2];
+  int Col;
+  int victoire =0;
   Board grilleP4;
+
   grilleP4 = InitializeBoard(grilleP4);
 
   
@@ -21,50 +23,262 @@ void partiePower4(Joueur joueur1, Joueur joueur2)
   {
   	
 		afficherBoard(grilleP4);
-		printf("C'est a %s de jouer : \n", joueur1.Nom);
+		if(tourDeJeu == 0) {
+			printf("C'est a %s de jouer : \n", joueur1.Nom);
+		}else {
+			printf("C'est a %s de jouer : \n", joueur2.Nom);
+		}
+		
 		printf("Entrez la colonne du pion que vous souhaitez rentrer (de 1 a 8)\n");
-		scanf("%d",newCol);
-		while (grilleP4.tabBoard[newCol-1][7] != 219) {
+		scanf("%s",&newCol);
+		Col = newCol[0]-49;
+		while (grilleP4.tabBoard[Col][0] == 'O' || grilleP4.tabBoard[Col][0] == 'X') {
 			printf("Cette colonne est deja pleine, rentrez en une autre(de 1 a 8)\n");
-			scanf("%d",newCol);
+			scanf("%s",&newCol);
 		}
-		l = 7;
-		while (grilleP4.tabBoard[newCol-1][l] == 219)
+		l = 0;
+		while (l < 8)
 		{
-			l--;
-		}
-		l += 1;
-		c = newCol-1;
-		if(tourDeJeu == 0) {	
-			grilleP4.tabBoard[newCol-1][l] == 'O';
-		}else if(tourDeJeu == -1) {
-			grilleP4.tabBoard[newCol-1][l] == 'X';
-		}
-		if(newCol-1 > 0)
-		{
-			while(c > 0 && grilleP4.tabBoard[c][l] == '1' && puissance1 < 4)
-			{
-				puissance1 ++;
-				c --;
+			if(grilleP4.tabBoard[Col][l] == 'O' || grilleP4.tabBoard[Col][l] == 'X') {
+				printf("%d  ",l);
+				printf("%d\n",Col);
+				break;
 			}
-			
+			l++;
 		}
+		l--;
+		if(tourDeJeu == 0) {	
+			grilleP4.tabBoard[Col][l] = 'O';
+		}else if(tourDeJeu == -1) {
+			grilleP4.tabBoard[Col][l] = 'X';
+		}
+		
+		//Verif Victoire
 
+		// Verif haut et bas
+		if ( tourDeJeu == 0) {
+			i =1;
+			victoire = 1;
+			while ( i + Col < 8) {
+				if(grilleP4.tabBoard[Col+i][l] == 'O') {
+					victoire += 1;
+				}else {
+					i = 8;
+				}
+				i++;
+			}
+			i = -1;
+			while ( i + Col >= 0) {
+				if(grilleP4.tabBoard[Col+i][l] == 'O') {
+					victoire += 1;
+				}else {
+					i = -9;
+				}
+				i--;
+			}
+			if(victoire>=4) {
+				printf("Bravo, %s a gagne !\n", joueur1.Nom);
+				finDePartie = -1;
+			}else {
+				i = 1;
+				victoire = 1;
+				while ( i + l < 8) {
+					if(grilleP4.tabBoard[Col][l+i] == 'O') {
+						victoire += 1;
+					}else {
+						i = 8;
+					}
+					i++;
+				}
+				i = -1;
+				while ( i + l >= 0) {
+					if(grilleP4.tabBoard[Col][l+i] == 'O') {
+						victoire += 1;
+					}else {
+						i = -9;
+					}
+					i--;
+				}
+				if(victoire>=4) {
+					printf("Bravo, %s a gagne !\n", joueur1.Nom);
+					finDePartie = -1;
+				}else {
+					i = 1;
+					j = 1;
+					victoire = 1;
+					while ( i + l < 8 && j +Col < 8) {
+						if(grilleP4.tabBoard[Col+j][l+i] == 'O') {
+							victoire += 1;
+						}else {
+							i = 8;
+						}
+						i++;
+						j++;
+					}
+					i = -1;
+					j = -1;
+					while ( i + l >= 0 && j + Col >= 0) {
+						if(grilleP4.tabBoard[Col+j][l+i] == 'O') {
+							victoire += 1;
+						}else {
+							i = -9;
+						}
+						i--;
+						j--;
+					}
+					if(victoire>=4) {
+						printf("Bravo, %s a gagne !\n", joueur1.Nom);
+						finDePartie = -1;						
+					}else {
+						i = -1;
+						j = 1;
+						victoire = 1;
+						while ( i + l >=0 && j +Col < 8) {
+							if(grilleP4.tabBoard[Col+j][l+i] == 'O') {
+								victoire += 1;
+							}else {
+								i = -9;
+							}
+							i--;
+							j++;
+						}
+						i = 1;
+						j = -1;
+						while ( i + l < 8 && j + Col >=0) {
+							if(grilleP4.tabBoard[Col+j][l+i] == 'O') {
+								victoire += 1;
+							}else {
+								i = 8;
+							}
+							i++;
+							j--;
+						}
+						if(victoire>=4) {
+							printf("Bravo, %s a gagne !\n", joueur1.Nom);
+							finDePartie = -1;
+						}
+					}
+				}
+			}
 
-
-
+		}else {
+			i =1;
+			victoire = 1;
+			while ( i + Col < 8) {
+				if(grilleP4.tabBoard[Col+i][l] == 'X') {
+					victoire += 1;
+				}else {
+					i = 8;
+				}
+				i++;
+			}
+			i = -1;
+			while ( i + Col >= 0) {
+				if(grilleP4.tabBoard[Col+i][l] == 'X') {
+					victoire += 1;
+				}else {
+					i = -9;
+				}
+				i--;
+			}
+			if(victoire>=4) {
+				printf("Bravo, %s a gagne !\n", joueur1.Nom);
+				finDePartie = -1;
+			}else {
+				i = 1;
+				victoire = 1;
+				while ( i + l < 8) {
+					if(grilleP4.tabBoard[Col][l+i] == 'X') {
+						victoire += 1;
+					}else {
+						i = 8;
+					}
+					i++;
+				}
+				i = -1;
+				while ( i + l >= 0) {
+					if(grilleP4.tabBoard[Col][l+i] == 'X') {
+						victoire += 1;
+					}else {
+						i = -9;
+					}
+					i--;
+				}
+				if(victoire>=4) {
+					printf("Bravo, %s a gagne !\n", joueur1.Nom);
+					finDePartie = -1;
+				}else {
+					i = 1;
+					j = 1;
+					victoire = 1;
+					while ( i + l < 8 && j +Col < 8) {
+						if(grilleP4.tabBoard[Col+j][l+i] == 'X') {
+							victoire += 1;
+						}else {
+							i = 8;
+						}
+						i++;
+						j++;
+					}
+					i = -1;
+					j = -1;
+					while ( i + l >= 0 && j + Col >= 0) {
+						if(grilleP4.tabBoard[Col+j][l+i] == 'X') {
+							victoire += 1;
+						}else {
+							i = -9;
+						}
+						i--;
+						j--;
+					}
+					if(victoire>=4) {
+						printf("Bravo, %s a gagne !\n", joueur1.Nom);
+						finDePartie = -1;
+					}else {
+						i = -1;
+						j = 1;
+						victoire = 1;
+						while ( i + l >=0 && j +Col < 8) {
+							if(grilleP4.tabBoard[Col+j][l+i] == 'X') {
+								victoire += 1;
+							}else {
+								i = -9;
+							}
+							i--;
+							j++;
+						}
+						i = 1;
+						j = -1;
+						while ( i + l < 8 && j + Col >= 0) {
+							if(grilleP4.tabBoard[Col+j][l+i] == 'X') {
+								victoire += 1;
+							}else {
+								i = 8;
+							}
+							i++;
+							j--;
+						}
+						if(victoire>=4) {
+							printf("Bravo, %s a gagne !\n", joueur1.Nom);
+							finDePartie = -1;
+						}
+					}
+				}
+			}		
+		}
 		
 	
 	
 
-	if(tourDeJeu == 0) {
-		tourDeJeu = -1;
+		if(tourDeJeu == 0) {
+			tourDeJeu = -1;
 
-	}else {
-		tourDeJeu = 0;
-	}
+		}else {
+			tourDeJeu = 0;
+		}
+
 	
-  }
+	}
 
 
 
