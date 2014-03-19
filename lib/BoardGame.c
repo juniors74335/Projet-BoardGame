@@ -4,6 +4,7 @@
 #include <string.h>
 #include "Othello.h"
 #include "FindTheExit.h"
+#include "Power4.h"
 
 
 Joueur* joueur1 = NULL;
