@@ -95,8 +95,8 @@ Board InitializeBoardOthello(Board b)
 
 
 int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
-	int l = mesDeuxChar[0]-97;
-	int c = mesDeuxChar[1] - 49;
+	int c = mesDeuxChar[0]-97;
+	int l = mesDeuxChar[1] - 49;
 	int i;
 	int j;
 	int retour = 0;
@@ -110,6 +110,7 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 			if(b.tabBoard[l][i] == 'X') {
 				for(i = c + 2;i < 8;i++) {
 					if(b.tabBoard[l][i] == 219) {
+						i = 8;
 						break;
 					}
 					if(b.tabBoard[l][i] == 'O') {
@@ -125,6 +126,7 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 			if(b.tabBoard[l][i] == 'X') {
 				for(i = c - 2;i >= 0;i--) {
 					if(b.tabBoard[l][i] == 219) {
+						i = -1;
 						break;
 					}
 					if(b.tabBoard[l][i] == 'O') {
@@ -140,6 +142,7 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 			if(b.tabBoard[i][c] == 'X') {
 				for(i = l - 2;i >= 0;i--) {
 					if(b.tabBoard[i][c] == 219) {
+						i = -1;
 						break;
 					}
 					if(b.tabBoard[i][c] == 'O') {
@@ -156,6 +159,7 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 			if(b.tabBoard[i][c] == 'X') {
 				for(i = l + 2;i < 8;i++) {
 					if(b.tabBoard[i][c] == 219) {
+						i = 8;
 						break;
 					}
 					if(b.tabBoard[i][c] == 'O') {
@@ -169,15 +173,20 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 		// Diago  Haut Gauche
 		if((i = c - 1) >= 0) {
 			if((j = l -1) >= 0) {
-				if(b.tabBoard[i][j] == 'X') {
-					for(i = c - 2; i >= 0;i--) {
-						for(j = l - 2;j >= 0; j--) {
-							if(b.tabBoard[i][j] == 219) {
-								break;
-							}
-							if(b.tabBoard[i][j] == 'O')
-								retour += 10000;
+				if(b.tabBoard[j][i] == 'X') {
+					i = c - 2;
+					j = l - 2;
+					while( i >= 0 && j >= 0) {
+						if(b.tabBoard[i][c] == 219) {
+							i = -1;
+							break;
 						}
+						
+						if(b.tabBoard[j][i] == 'O')
+							retour += 10000;
+						i--;
+						j--;
+						
 					}
 				}
 			}
@@ -187,15 +196,20 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 		if((i = c + 1) < 8) {
 			if((j = l -1) >= 0) {
-				if(b.tabBoard[i][j] == 'X') {
-					for(i = c + 2; i < 8;i++) {
-						for(j = l - 2;j >= 0; j--) {
-							if(b.tabBoard[i][j] == 219) {
-								break;
-							}
-							if(b.tabBoard[i][j] == 'O')
-								retour += 100000;
+				if(b.tabBoard[j][i] == 'X') {
+					i = c + 2;
+					j = l - 2;
+					while( i < 8 && j >= 0) {
+						if(b.tabBoard[i][c] == 219) {
+							i = 8;
+							break;
 						}
+						
+						if(b.tabBoard[j][i] == 'O')
+							retour += 100000;
+						i++;
+						j--;
+						
 					}
 				}
 			}
@@ -205,16 +219,22 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 		if((i = c - 1) >= 0) {
 			if((j = l + 1) < 8) {
-				if(b.tabBoard[i][j] == 'X') {
-					for(i = c - 2; i >= 0;i--) {
-						for(j = l + 2;j < 8; j++) {
-							if(b.tabBoard[i][j] == 219) {
-								break;
-							}
-							if(b.tabBoard[i][j] == 'O')
-								retour += 1000000;
+				if(b.tabBoard[j][i] == 'X') {
+					i = c - 2;
+					j = l + 2;
+					while( i >= 0 && j < 8) {
+						if(b.tabBoard[i][c] == 219) {
+							i = -1;
+							break;
 						}
+						
+						if(b.tabBoard[j][i] == 'O')
+							retour += 1000000;
+						i--;
+						j++;
+						
 					}
+					
 				}
 			}
 		}
@@ -223,23 +243,24 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 		if((i = c + 1) < 8) {
 			if((j = l + 1) < 8) {
-				if(b.tabBoard[i][j] == 'X') {
-					for(i = c + 2; i < 8;i++) {
-						for(j = l + 2;j < 8; j++) {
-							if(b.tabBoard[i][j] == 219) {
-								break;
-							}
-							if(b.tabBoard[i][j] == 'O')
-								retour += 10000000;
+				if(b.tabBoard[j][i] == 'X') {
+					i = c + 2;
+					j = l + 2;
+					while( i < 8 && j < 8) {
+						if(b.tabBoard[i][c] == 219) {
+							i = 8;
+							break;
 						}
+						
+						if(b.tabBoard[j][i] == 'O')
+							retour += 10000000;
+						i++;
+						j++;
+						
 					}
 				}
 			}
 		}
-
-
-		// Debug
-
 
 		// FIn des tests...
 	}else if(tourDeJeu == -1) {
@@ -249,6 +270,7 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 			if(b.tabBoard[l][i] == 'O') {
 				for(i = c + 2;i < 8;i++) {
 					if(b.tabBoard[l][i] == 219) {
+						i = 8;
 						break;
 					}
 					if(b.tabBoard[l][i] == 'X') {
@@ -264,6 +286,7 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 			if(b.tabBoard[l][i] == 'O') {
 				for(i = c - 2;i >= 0;i--) {
 					if(b.tabBoard[l][i] == 219) {
+						i = -1;
 						break;
 					}
 					if(b.tabBoard[l][i] == 'X') {
@@ -279,6 +302,7 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 			if(b.tabBoard[i][c] == 'O') {
 				for(i = l - 2;i >= 0;i--) {
 					if(b.tabBoard[i][c] == 219) {
+						i = -1;
 						break;
 					}
 					if(b.tabBoard[i][c] == 'X') {
@@ -295,6 +319,7 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 			if(b.tabBoard[i][c] == 'O') {
 				for(i = l + 2;i < 8;i++) {
 					if(b.tabBoard[i][c] == 219) {
+						i = 8;
 						break;
 					}
 					if(b.tabBoard[i][c] == 'X') {
@@ -308,15 +333,20 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 		// Diago  Haut Gauche
 		if((i = c - 1) >= 0) {
 			if((j = l -1) >= 0) {
-				if(b.tabBoard[i][j] == 'O') {
-					for(i = c - 2; i >= 0;i--) {
-						for(j = l - 2;j >= 0; j--) {
-							if(b.tabBoard[i][j] == 219) {
-								break;
-							}
-							if(b.tabBoard[i][j] == 'X')
-								retour += 10000;
+				if(b.tabBoard[j][i] == 'O') {
+					i = c - 2;
+					j = l - 2;
+					while( i >= 0 && j >= 0) {
+						if(b.tabBoard[j][i] == 219) {
+							i = -1;
+							break;
 						}
+						
+						if(b.tabBoard[j][i] == 'X')
+							retour += 10000;
+						i--;
+						j--;
+						
 					}
 				}
 			}
@@ -326,15 +356,20 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 		if((i = c + 1) < 8) {
 			if((j = l -1) >= 0) {
-				if(b.tabBoard[i][j] == 'O') {
-					for(i = c + 2; i < 8;i++) {
-						for(j = l - 2;j >= 0; j--) {
-							if(b.tabBoard[i][j] == 219) {
-								break;
-							}
-							if(b.tabBoard[i][j] == 'X')
-								retour += 100000;
+				if(b.tabBoard[j][i] == 'O') {
+					i = c + 2;
+					j = l - 2;
+					while( i < 8 && j >= 0) {
+						if(b.tabBoard[j][i] == 219) {
+							j = -1;
+							break;
 						}
+						
+						if(b.tabBoard[j][i] == 'X')
+							retour += 100000;
+						i++;
+						j--;
+						
 					}
 				}
 			}
@@ -344,16 +379,22 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 		if((i = c - 1) >= 0) {
 			if((j = l + 1) < 8) {
-				if(b.tabBoard[i][j] == 'O') {
-					for(i = c - 2; i >= 0;i--) {
-						for(j = l + 2;j < 8; j++) {
-							if(b.tabBoard[i][j] == 219) {
-								break;
-							}
-							if(b.tabBoard[i][j] == 'X')
-								retour += 1000000;
+				if(b.tabBoard[j][i] == 'O') {
+					i = c - 2;
+					j = l + 2;
+					while( i >= 0 && j < 8) {
+						if(b.tabBoard[j][i] == 219) {
+							i = -1;
+							break;
 						}
+						
+						if(b.tabBoard[j][i] == 'X')
+							retour += 1000000;
+						i--;
+						j++;
+						
 					}
+					
 				}
 			}
 		}
@@ -362,24 +403,24 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 		if((i = c + 1) < 8) {
 			if((j = l + 1) < 8) {
-				if(b.tabBoard[i][j] == 'O') {
-					for(i = c + 2; i < 8;i++) {
-						for(j = l + 2;j < 8; j++) {
-							if(b.tabBoard[i][j] == 219) {
-								break;
-							}
-							if(b.tabBoard[i][j] == 'X')
-								retour += 10000000;
+				if(b.tabBoard[j][i] == 'O') {
+					i = c + 2;
+					j = l + 2;
+					while( i < 8 && j < 8) {
+						if(b.tabBoard[j][i] == 219) {
+							i = 8;
+							break;
 						}
+						
+						if(b.tabBoard[j][i] == 'X')
+							retour += 10000000;
+						i++;
+						j++;
+						
 					}
 				}
 			}
 		}
-
-
-		// Debug
-
-
 		// FIn des tests...
 		
 	}
@@ -389,91 +430,99 @@ int verifPositionOk(char* mesDeuxChar,Board b,int tourDeJeu) {
 
 
 Board updateBoard(Board b,int valeurRetour,int tourDeJeu,char* mesDeuxChar) {
-	int l = mesDeuxChar[0]-97;
-	int c = mesDeuxChar[1] - 49;
+	int c = mesDeuxChar[0]-97;
+	int l = mesDeuxChar[1] - 49;
 	int i;
 	int j;
+	
 	if(tourDeJeu == 0) {
-		b.tabBoard[c][l] = 'O';
+		b.tabBoard[l][c] = 'O';
 		if(valeurRetour - 10000000 >= 0) {
 			valeurRetour -= 10000000;
-			for(i = c + 1; i < 8;i++) {
-				for(j = l + 1;j < 8; j++) {
-					if(b.tabBoard[i][j] == 'O') {
-						break;
-					}
-					if(b.tabBoard[i][j] == 'X')
-						b.tabBoard[i][j] = 'O';
-				}
+			i = c + 1;
+			j = l + 1;
+			while( i < 8 && j < 8) {
+				if(b.tabBoard[j][i] == 'O') 
+					i = 8;
+				else
+					b.tabBoard[j][i] = 'O';
+				i++;
+				j++;
+				
 			}
 		}
 		if(valeurRetour - 1000000 >= 0) {
 			valeurRetour -= 1000000;
-			for(i = c - 1; i >= 0;i--) {
-				for(j = l + 1;j < 8; j++) {
-					if(b.tabBoard[i][j] == 'O') {
-						break;
-					}
-					if(b.tabBoard[i][j] == 'X')
-						b.tabBoard[i][j] = 'O';
-				}
+			i = c - 1;
+			j = l + 1;
+			while( i >= 0 && j < 8) {
+				if(b.tabBoard[j][i] == 'O') 
+					i = -1;
+				else
+					b.tabBoard[j][i] = 'O';
+				i--;
+				j++;
+				
 			}
 		}
+		printf("%d\n", valeurRetour);
 		if(valeurRetour - 100000 >= 0) {
 			valeurRetour -= 100000;
-			for(i = c + 1; i < 8;i++) {
-				for(j = l - 1;j >= 0; j--) {
-					if(b.tabBoard[i][j] == 'O') {
-						break;
-					}
-					if(b.tabBoard[i][j] == 'X')
-						b.tabBoard[i][j] = 'O';
-				}
+			i = c + 1;
+			j = l - 1;
+			while( i < 8 && j >= 0) {
+				if(b.tabBoard[j][i] == 'O') 
+					i = 8;
+				else
+					b.tabBoard[j][i] = 'O';
+				i++;
+				j--;
+				
 			}
 		}
 		if(valeurRetour - 10000 >= 0) {
 			valeurRetour -= 10000;
-			for(i = c - 1; i >= 0;i--) {
-				for(j = l - 1;j >= 0; j--) {
-					if(b.tabBoard[i][j] == 'O') {
-						break;
-					}
-					if(b.tabBoard[i][j] == 'X')
-						b.tabBoard[i][j] = 'O';
-				}
+			printf("c%dl%d\n ",c,l);
+			i = c - 1;
+			j = l - 1;
+			while( i >= 0 && j >= 0) {
+				if(b.tabBoard[j][i] == 'O') 
+					i = -1;
+				else
+					b.tabBoard[j][i] = 'O';
+				i--;
+				j--;
+				
 			}
 		}
 		if(valeurRetour - 1000 >= 0) {
 			valeurRetour -= 1000;
 			for(i = l + 1;i < 8;i++) {
-				if(b.tabBoard[i][c] == 'O') {
-					break;
-				}
-				if(b.tabBoard[i][c] == 'X') {
+				if(b.tabBoard[i][c] == 'O') 
+					i = 8;
+				else
 					b.tabBoard[i][c] = 'O';
-				}
+				
 			}
 		}
 		if(valeurRetour - 100 >= 0) {
 			valeurRetour -= 100;
 			for(i = l - 1;i >= 0;i--) {
-				if(b.tabBoard[i][c] == 'O') {
-					break;
-				}
-				if(b.tabBoard[i][c] == 'X') {
+				if(b.tabBoard[i][c] == 'O') 
+					i = -1;
+				else
 					b.tabBoard[i][c] = 'O';
-				}
+				
 			}
 		}
 		if(valeurRetour - 10 >= 0) {
 			valeurRetour -= 10;
 			for(i = c - 1;i >= 0;i--) {
-				if(b.tabBoard[l][i] == 'O') {
-					break;
-				}
-				if(b.tabBoard[l][i] == 'X') {
+				if(b.tabBoard[l][i] == 'O') 
+					i = -1;
+				else
 					b.tabBoard[l][i] = 'O';
-				}
+				
 			}
 		}
 		if((valeurRetour - 1) >= 0) {
@@ -481,108 +530,110 @@ Board updateBoard(Board b,int valeurRetour,int tourDeJeu,char* mesDeuxChar) {
 
 	
 			for(i = c + 1;i < 8;i++) {
-				if(b.tabBoard[l][i] == 'O') {
-					break;
-				}
-				if(b.tabBoard[l][i] == 'X') {
+				if(b.tabBoard[l][i] == 'O') 
+					i = 8;
+				else
 					b.tabBoard[l][i] = 'O';
-				}
+				
 			}
 		}
 
 
 	}else if(tourDeJeu == -1) {
-		b.tabBoard[c][l] = 'X';
+		b.tabBoard[l][c] = 'X';
 		if(valeurRetour - 10000000 >= 0) {
 			valeurRetour -= 10000000;
-			for(i = c + 1; i < 8;i++) {
-				for(j = l + 1;j < 8; j++) {
-					if(b.tabBoard[i][j] == 'X') {
-						break;
-					}
-					if(b.tabBoard[i][j] == 'O')
-						b.tabBoard[i][j] = 'X';
-				}
+			i = c + 1;
+			j = l + 1;
+			while( i < 8 && j < 8) {
+				if(b.tabBoard[j][i] == 'X') 
+					i = 8;
+				else
+					b.tabBoard[j][i] = 'X';
+				i++;
+				j++;
+				
 			}
 		}
 		if(valeurRetour - 1000000 >= 0) {
 			valeurRetour -= 1000000;
-			for(i = c - 1; i >= 0;i--) {
-				for(j = l + 1;j < 8; j++) {
-					if(b.tabBoard[i][j] == 'X') {
-						break;
-					}
-					if(b.tabBoard[i][j] == 'O')
-						b.tabBoard[i][j] = 'X';
-				}
+			i = c - 1;
+			j = l + 1;
+			while( i >= 0 && j < 8) {
+				if(b.tabBoard[j][i] == 'X') 
+					i = -1;
+				else
+					b.tabBoard[j][i] = 'X';
+				i--;
+				j++;
+				
 			}
 		}
 		if(valeurRetour - 100000 >= 0) {
 			valeurRetour -= 100000;
-			for(i = c + 1; i < 8;i++) {
-				for(j = l - 1;j >= 0; j--) {
-					if(b.tabBoard[i][j] == 'X') {
-						break;
-					}
-					if(b.tabBoard[i][j] == 'O')
-						b.tabBoard[i][j] = 'X';
-				}
+			i = c + 1;
+			j = l - 1;
+			while( i < 8 && j >= 0) {
+				if(b.tabBoard[j][i] == 'X') 
+					i = 8;
+				else
+					b.tabBoard[j][i] = 'X';
+				i++;
+				j--;
+				
 			}
 		}
 		if(valeurRetour - 10000 >= 0) {
 			valeurRetour -= 10000;
-			for(i = c - 1; i >= 0;i--) {
-				for(j = l - 1;j >= 0; j--) {
-					if(b.tabBoard[i][j] == 'X') {
-						break;
-					}
-					if(b.tabBoard[i][j] == 'O')
-						b.tabBoard[i][j] = 'X';
-				}
+			i = c - 1;
+			j = l - 1;
+			while( i >= 0 && j >= 0) {
+				if(b.tabBoard[j][i] == 'X') 
+					i = -1;
+				else				
+					b.tabBoard[j][i] = 'X';
+				i--;
+				j--;
+				
 			}
 		}
 		if(valeurRetour - 1000 >= 0) {
 			valeurRetour -= 1000;
 			for(i = l + 1;i < 8;i++) {
-				if(b.tabBoard[i][c] == 'X') {
-					break;
-				}
-				if(b.tabBoard[i][c] == 'O') {
+				if(b.tabBoard[i][c] == 'X') 
+					i = 8;
+				else
 					b.tabBoard[i][c] = 'X';
-				}
+				
 			}
+
 		}
 		if(valeurRetour - 100 >= 0) {
 			valeurRetour -= 100;
 			for(i = l - 1;i >= 0;i--) {
-				if(b.tabBoard[i][c] == 'X') {
-					break;
-				}
-				if(b.tabBoard[i][c] == 'O') {
+				if(b.tabBoard[i][c] == 'X')
+					i = -1;
+				else 
 					b.tabBoard[i][c] = 'X';
-				}
 			}
 		}
 		if(valeurRetour - 10 >= 0) {
 			valeurRetour -= 10;
 			for(i = c - 1;i >= 0;i--) {
-				if(b.tabBoard[l][i] == 'X') {
-					break;
-				}
-				if(b.tabBoard[l][i] == 'O') {
+				if(b.tabBoard[l][i] == 'X') 
+					i = -1;
+				else
 					b.tabBoard[l][i] = 'X';
-				}
 			}
 		}
 		if(valeurRetour - 1 >= 0) {
 			valeurRetour -= 1;
 			for(i = c + 1;i < 8;i++) {
-				if(b.tabBoard[l][i] == 'X') {
-					break;
-				}
-				if(b.tabBoard[l][i] == 'O') {
+				if(b.tabBoard[l][i] == 'X') 
+					i = 8;
+				else
 					b.tabBoard[l][i] = 'X';
-				}
+				
 			}
 		}
 	}
