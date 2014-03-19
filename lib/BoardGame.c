@@ -18,8 +18,6 @@ int main() 	{
 
 	
 	Initialize();
-	printf("%s\n", joueur1->Nom);
-	printf("%s\n", joueur2->Nom);
 	printf("Bonjour et bienvenue sur l'application BoardGame\n");
 	printf("Si vous voulez jouer a l'Othello tapez 1\n");
 	printf("Si vous voulez jouer a FindTheExit, tapez 2\n");
